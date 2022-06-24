@@ -1,0 +1,4 @@
+^{:ring-server-options {:port 9900}}
+{:main io.dominic.webpack-dev-server.app.dev
+ :output-dir "target/public/cljs-out/app"
+ :output-to "target/public/cljs-out/app/main.js"}

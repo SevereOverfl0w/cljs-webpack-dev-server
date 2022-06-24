@@ -1,0 +1,5 @@
+{:output-to "target/cljs-out/app/main.js"
+ :output-dir "target/cljs-out/app"
+ :optimizations :advanced
+ :closure-defines {"goog.DEBUG" false}
+ :main io.dominic.webpack-dev-server.app.main}

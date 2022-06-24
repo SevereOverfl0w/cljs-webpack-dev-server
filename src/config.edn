@@ -1,0 +1,10 @@
+{:clip/system
+ {:components
+  {:srv {:start (ring.adapter.jetty/run-jetty
+                  (clip/ref :handler)
+                  {:port 3000
+                   :join? false})
+         :stop (.stop this)}
+   :handler {:start (io.dominic.webpack-dev-server.web/wrap-serve-build (clip/ref :message-handler))}
+   :message-handler {:start (io.dominic.webpack-dev-server.web/message
+                             {:message "Change this message in src/config.edn!"})}}}}

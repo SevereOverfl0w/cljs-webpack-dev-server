@@ -1,0 +1,41 @@
+# io.dominic.webpack-dev-server
+
+## Demo instructions
+
+1. Start a dev system as normal & open your browser to localhost:3000
+2. In a new terminal, run `npx webpack serve`
+3. Change coolfoo/index.js
+4. See the browser hot reload the JavaScript dependency!
+
+### How it works
+
+There's a new entrypoint, hot.js.
+hot.js hooks into the webpack HMR system, and triggers a reload of any ClojureScript namespaces which are using `require('coolfoo')`.
+Following a reload, a reload function is called to trigger a re-render.
+
+### What doesn't work
+
+* Namespace list doing a `require()` is hardcoded
+* List of JavaScript dependencies to hot reload is hardcoded in hot.js.  This means a new `coolfoo/bar` wouldn't be replaced.
+* The reload uses figwheel and therefore triggers a full re-fetch of JavaScript which shouldn't be necessary.
+
+## Useful Commands
+
+Start a dev system
+
+$ clj -A:dev
+user=> (dev)
+dev=> (go)
+
+Create figwheel release build
+
+$ clj -T:fig:build cljs
+
+Create release docker tar
+
+$ clj -T:fig:build docker
+
+Run release docker tar
+
+$ podman load < target/webpack-dev-server.tar.gz
+$ podman run --rm -p 3000:3000 io.dominic/webpack-dev-server

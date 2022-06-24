@@ -1,0 +1,26 @@
+{
+    "calva.customREPLCommandSnippets": [
+        {
+            "name": "Start Wedge Development System",
+            "repl": "clj",
+            "ns": "dev",
+            "snippet": "(go)"
+        },
+        {
+            "name": "Reload Clojure Code",
+            "repl": "clj",
+            "ns": "dev",
+            "snippet": "(reset)"
+        }
+    ],
+    "calva.replConnectSequences": [
+        {
+            "name": "Wedge",
+            "projectType": "Clojure CLI",
+            "cljsType": "none",
+            "menuSelections": {
+                "cljAliases": [ "dev" ]
+            }
+        }
+    ]
+}

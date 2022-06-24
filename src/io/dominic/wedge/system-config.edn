@@ -1,0 +1,3 @@
+{:system io.dominic.wedge.clip
+ :config io.dominic.wedge.aero
+ :dev {:profile :dev}}

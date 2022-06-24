@@ -1,0 +1,40 @@
+{:paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        io.dominic/wedge {:mvn/version "0.13.0"}
+        juxt/clip {:mvn/version "0.26.0"}
+        aero/aero {:mvn/version "1.1.6"}
+        ring/ring {:mvn/version "1.8.2"}
+        co.deps/ring-etag-middleware {:mvn/version "0.2.1"}}
+ :aliases
+ {:test-paths ["test"]
+  :build-paths ["target"]
+  :fig {:extra-paths [:build-paths "src"]
+        :extra-deps {com.bhauman/figwheel-main {:mvn/version "0.2.18"}
+                     org.clojure/clojurescript {:mvn/version "1.11.54"}
+                     lilactown/helix {:mvn/version "0.1.6"}
+                     io.dominic/helix-sev {:git/url "https://git.sr.ht/~severeoverfl0w/helix-sev"
+                                           :sha "cb0e637b18c1eee68a24b5b29b45f6cbf011a035"}}
+        :main-opts ["-m" "figwheel.main"]}
+  :min {:main-opts ["-m" "figwheel.main" "-bo" "app:min"]}
+  :dev {:extra-paths ["dev" :test-paths :build-paths]
+        :extra-deps {com.stuartsierra/log.dev {:mvn/version "0.2.0"}
+                     org.clojure/tools.namespace {:mvn/version "1.1.0"}
+                     com.bhauman/figwheel-main {:mvn/version "0.2.18"}
+                     org.clojure/clojurescript {:mvn/version "1.11.54"}
+                     lilactown/helix {:mvn/version "0.1.6"}
+                     io.dominic/helix-sev {:git/url "https://git.sr.ht/~severeoverfl0w/helix-sev"
+                                           :sha "cb0e637b18c1eee68a24b5b29b45f6cbf011a035"}
+                     io.dominic/wedge-mise {:git/url "https://git.sr.ht/~severeoverfl0w/wedge-mise"
+                                            :sha "670720d43c24495284dcce1db98cdd4269109b6e"
+                                            :exclusions [;; included in closure-compiler-unshaded via clojurescript, but closure-compiler-unshaded has copies of guava in it... big mess!
+                                                         com.google.guava/guava]}}}
+  :test {:extra-paths [:test-paths]}
+  :runner
+  {:extra-deps {com.cognitect/test-runner
+                {:git/url "https://github.com/cognitect-labs/test-runner"
+                 :sha "dd6da11611eeb87f08780a30ac8ea6012d4c05ce"}}
+   :main-opts ["-m" "cognitect.test-runner"
+               "-d" "test"]}
+  :build {:deps {io.github.clojure/tools.build {:git/tag "v0.8.2" :git/sha "ba1a2bf"}
+                 io.github.juxt/pack.alpha {:git/sha "843475881c5b3ba1a2c9f102f6f5f86f3293a574"}}
+          :ns-default build}}}
